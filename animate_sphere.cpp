@@ -26,10 +26,11 @@
 #include <iostream>
 #include <string>
 
+// Define the three parameters of light
 struct LightParameters {
-  glm::vec4 diffuse_intensity;
-  glm::vec4 ambient_intensity;
-  glm::vec4 light_direction;
+  glm::vec4 diffuseIntensity;
+  glm::vec4 ambientIntensity;
+  glm::vec4 lightDirection;
 };
 
 glm::vec3 color = glm::vec3(0.0f, 0.0f, 1.0f);
@@ -203,9 +204,9 @@ void init_uniforms(GLuint program) {
   glUniform3fv(color_location, 1, &(color[0]));
 
   // Initialize lighting data in uniform buffer object
-  params.diffuse_intensity = glm::vec4(0.4f, 0.4f, 0.4f, 1.0f);
-  params.ambient_intensity = glm::vec4(0.3f, 0.3f, 0.3f, 1.0f);
-  params.light_direction = glm::vec4(0.0f, -1.0f, 0.5f, 1.0f);
+  params.diffuseIntensity = glm::vec4(0.4f, 0.4f, 0.4f, 1.0f);
+  params.ambientIntensity = glm::vec4(0.3f, 0.3f, 0.3f, 1.0f);
+  params.lightDirection = glm::vec4(0.0f, -1.0f, 0.5f, 1.0f);
 
   // Set the uniform buffer object
   glUseProgram(program);
@@ -225,7 +226,7 @@ void init_uniforms(GLuint program) {
 }
 
 // Initialize the OpenGL Rendering
-void init_gl(int argc, char* argv[]) {
+void initGL(int argc, char* argv[]) {
 
   // Initialize the main window
   glutInit(&argc, argv);
@@ -326,7 +327,7 @@ int main(int argc, char* argv[]) {
   num_objects = geom_vec.size();
 
   // Start OpenGL processing
-  init_gl(argc, argv);
+  initGL(argc, argv);
 
   // Set callback functions
   glutDisplayFunc(display);
